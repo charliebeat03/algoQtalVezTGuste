@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeIn 2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 700;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            font-size: 2rem;
+            animation: heartbeat 1.2s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .photos-section, .quotes-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 180px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .quotes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .quote-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .quote-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .quote-author {
+            text-align: right;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #ffd166;
+        }
+        
+        .music-player {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 500px;
+            margin: 40px auto;
+            backdrop-filter: blur(5px);
+        }
+        
+        .music-info {
+            flex: 1;
+        }
+        
+        .song-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .artist {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1rem;
+        }
+        
+        .love-note {
+            font-size: 1.3rem;
+            margin: 20px 0;
+            font-weight: 500;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.7);
+            font-size: 20px;
+            animation: float 10s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .upload-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Modal para subir fotos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #ff6b6b;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .file-input-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .file-input-label:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .music-instructions {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        /* Lightbox para ver fotos en grande */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            text-align: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            margin: 5% auto;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-lightbox:hover {
+            color: #ff6b6b;
+        }
+        
+        /* Mensajes de estado */
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .status-success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+        }
+        
+        .status-error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+        }
+        
+        .status-loading {
+            background: rgba(52, 152, 219, 0.2);
+            border: 1px solid #3498db;
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                flex-direction: column;
+            }
+            
+            .quote-text {
+                font-size: 1.1rem;
+            }
+            
+            .modal-content {
+                margin: 20% 15px;
+                padding: 20px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <!-- Modal para subir fotos -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 class="modal-title"><i class="fas fa-cloud-upload-alt"></i> Subir Foto</h2>
+            
+            <div class="file-input-container">
+                <label for="photo-upload" class="file-input-label">
+                    <i class="fas fa-folder-open"></i> Seleccionar foto
+                </label>
+                <input type="file" id="photo-upload" class="file-input" accept="image/*">
+            </div>
+            
+            <div class="preview-container">
+                <img id="preview-image" class="preview-image" alt="Vista previa">
+            </div>
+            
+            <div id="upload-status" class="status-message">
+                <div class="loading-spinner"></div>
+                <span>Subiendo foto a GitHub...</span>
+            </div>
+            
+            <button id="submit-photo" class="submit-btn" disabled>
+                <i class="fas fa-heart"></i> Agregar a nuestra galería
+            </button>
+        </div>
+    </div>
+    
+    <!-- Lightbox para ver fotos en grande -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-image" class="lightbox-image" alt="Foto en grande">
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Para Mi Amor <i class="fas fa-heart heart"></i></h1>
+            <p class="subtitle">Un pequeño espacio donde guardo los momentos que hacen que mi corazón lata más fuerte</p>
+        </header>
+        
+        <div class="content">
+            <div class="photos-section">
+                <h2 class="section-title"><i class="fas fa-camera"></i> Nuestros Momentos</h2>
+                <p>Estas fotos capturan la esencia de lo que somos juntos.</p>
+                
+                <div class="gallery" id="photo-gallery">
+                    <!-- Fotos se cargarán dinámicamente aquí -->
+                </div>
+                
+                <div class="upload-btn" id="open-upload-btn">
+                    <i class="fas fa-plus"></i> Agregar más fotos
+                </div>
+                
+                <div id="github-status" class="status-message">
+                    <div class="loading-spinner"></div>
+                    <span>Cargando fotos de GitHub...</span>
+                </div>
+            </div>
+            
+            <div class="quotes-section">
+                <h2 class="section-title"><i class="fas fa-quote-left"></i> Palabras desde el Corazón</h2>
+                <p>Frases que expresan lo que siento cuando pienso en ti.</p>
+                
+                <div class="quotes-container">
+                    <div class="quote-card">
+                        <p class="quote-text">Eres mi lugar seguro, la persona con quien quiero compartir tanto los días soleados como los días de lluvia.</p>
+                        <p class="quote-author">- Para ti 🐼</p>
+                    </div>
+                    <div class="quote-card">
+                        <p class="quote-text">Me encanta cómo podemos pasar horas hablando de cualquier cosa y al mismo tiempo disfrutar de los silencios cómodos.</p>
+                        <p class="quote-author">- Siempre ♾️</p>
+                    </div>
+                    <div class="quote-card">
+                        <p class="quote-text">Ver tu sonrisa y dormir abrazaditos son mis placeres favoritos .</p>
+                        <p class="quote-author">- Con amor ❤️</p>
+                    </div>
+                    <div class="quote-card">
+                        <p class="quote-text">No se trata de grandes gestos, sino de esos pequeños momentos que compartimos y que significan todo.</p>
+                        <p class="quote-author">- Para ti 🐼</p>
+                    </div>
+                    <div class="quote-card">
+                        <p class="quote-text">Contigo he descubierto que el amor no es encontrar a alguien perfecto, sino ver perfectamente a alguien.</p>
+                        <p class="quote-author">- Siempre ♾️</p>
+                    </div>
+                    <div class="quote-card">
+                        <p class="quote-text">Me haces querer ser mejor persona cada día, solo para estar a la altura de lo que siento por ti.</p>
+                        <p class="quote-author">- Con amor ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="music-player">
+            <div class="music-info">
+                <div class="song-title">Ojitos Lindos</div>
+                <div class="artist">Bad Bunny ft. Bomba Estéreo</div>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                <button class="control-btn" id="play-btn"><i class="fas fa-play"></i></button>
+                <button class="control-btn" id="next-btn"><i class="fas fa-step-forward"></i></button>
+            </div>
+        </div>
+        
+        <div class="music-instructions">
+            <p><i class="fas fa-info-circle"></i> <strong>Nota:</strong> Para escuchar la canción:</p>
+            <p>1. Descarga "Ojitos Lindos" en MP3</p>
+            <p>2. Renombra como <span class="highlight">Ojitos_lindos.mp3</span></p>
+            <p>3. Colócalo en la misma carpeta que esta página</p>
+        </div>
+        
+        <footer>
+            <p class="love-note">Cada día contigo es una página nueva en nuestra historia</p>
+            <p>Creado con <i class="fas fa-heart" style="color: #ff6b6b;"></i> para ti mi Pandita🐼</p>
+        </footer>
+    </div>
+    
+    <audio id="background-music" loop>
+        <source src="Ojitos_lindos.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <script>
+        // Configuración (REEMPLAZAR CON TUS DATOS)
+        const GITHUB_USER = 'tu-usuario';  // Tu nombre de usuario de GitHub
+        const GITHUB_REPO = 'tu-repositorio';  // Nombre del repositorio
+        const GITHUB_TOKEN = 'TU_TOKEN_DE_ACCESO_GITHUB';  // Tu token de acceso clásico
+        const PHOTOS_FILE = 'fotos.json';  // Archivo donde se guardan las fotos
+        
+        // URL base para la API de GitHub
+        const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${PHOTOS_FILE}`;
+        
+        // Datos iniciales con fotos que se ajustan mejor
+        const initialPhotos = [
+            {src: 'https://i.imgur.com/Gyexo2U.jpeg', alt: 'Nuestra foto 1'},
+            {src: 'https://i.imgur.com/7FVk3J4.jpeg', alt: 'Nuestra foto 2'},
+            {src: 'https://i.imgur.com/RhWYrs7.jpeg', alt: 'Nuestra foto 3'},
+            {src: 'https://i.imgur.com/enzI4bE.jpeg', alt: 'Nuestra foto 4'},
+            {src: 'https://i.imgur.com/ibdWfhA.jpeg', alt: 'Nuestra foto 5'},
+            {src: 'https://i.imgur.com/bNrcQtg.jpeg', alt: 'Nuestra foto 6'}
+        ];
+        
+        // Crear corazones flotantes
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart-particle');
+                
+                // Posición y tamaño aleatorios
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Control de música
+        const audio = document.getElementById('background-music');
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = playBtn.querySelector('i');
+        
+        // Cargar galería de fotos desde GitHub
+        async function loadGallery() {
+            const gallery = document.getElementById('photo-gallery');
+            const statusMessage = document.getElementById('github-status');
+            
+            // Mostrar estado de carga
+            statusMessage.style.display = 'block';
+            statusMessage.className = 'status-message status-loading';
+            statusMessage.innerHTML = '<div class="loading-spinner"></div> <span>Cargando fotos de GitHub...</span>';
+            
+            try {
+                // Recuperar fotos guardadas en GitHub
+                const response = await fetch(GITHUB_API_URL, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar la galería desde GitHub');
+                }
+                
+                const data = await response.json();
+                const content = atob(data.content);
+                const photos = JSON.parse(content);
+                
+                renderGallery(photos);
+                
+                // Ocultar mensaje de estado
+                statusMessage.style.display = 'none';
+            } catch (error) {
+                console.error('Error cargando fotos:', error);
+                
+                // Usar fotos locales como respaldo
+                renderGallery(initialPhotos);
+                
+                // Mostrar mensaje de error
+                statusMessage.className = 'status-message status-error';
+                statusMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> <span>No se pudieron cargar las fotos de GitHub. Usando fotos locales.</span>';
+            }
+        }
+        
+        // Renderizar la galería
+        function renderGallery(photos) {
+            const gallery = document.getElementById('photo-gallery');
+            gallery.innerHTML = '';
+            
+            photos.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.dataset.index = index;
+                
+                const img = document.createElement('img');
+                img.src = photo.src;
+                img.alt = photo.alt;
+                
+                galleryItem.appendChild(img);
+                gallery.appendChild(galleryItem);
+                
+                // Agregar evento para abrir lightbox
+                galleryItem.addEventListener('click', function() {
+                    openLightbox(photo.src);
+                });
+            });
+        }
+        
+        // Abrir lightbox con foto
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            lightboxImage.src = src;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Cerrar lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Intentar reproducir automáticamente
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            loadGallery();
+            
+            // Reproducir música automáticamente si está disponible
+            setTimeout(() => {
+                if (audio.src) {
+                    const playPromise = audio.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            playIcon.classList.remove('fa-play');
+                            playIcon.classList.add('fa-pause');
+                        }).catch(error => {
+                            console.log("La reproducción automática fue prevenida.");
+                        });
+                    }
+                }
+            }, 1000);
+        });
+        
+        // Control de botones
+        playBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            } else {
+                audio.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            }
+        });
+        
+        // Funcionalidad para subir fotos
+        const uploadModal = document.getElementById('upload-modal');
+        const openUploadBtn = document.getElementById('open-upload-btn');
+        const closeModalBtn = document.getElementById('close-modal');
+        const photoUploadInput = document.getElementById('photo-upload');
+        const previewImage = document.getElementById('preview-image');
+        const submitPhotoBtn = document.getElementById('submit-photo');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+        const uploadStatus = document.getElementById('upload-status');
+        
+        // Abrir modal para subir fotos
+        openUploadBtn.addEventListener('click', function() {
+            uploadModal.style.display = 'block';
+            // Resetear formulario
+            photoUploadInput.value = '';
+            previewImage.style.display = 'none';
+            previewImage.src = '';
+            submitPhotoBtn.disabled = true;
+            uploadStatus.style.display = 'none';
+        });
+        
+        // Cerrar modal
+        closeModalBtn.addEventListener('click', function() {
+            uploadModal.style.display = 'none';
+        });
+        
+        // Cerrar modal al hacer clic fuera de él
+        window.addEventListener('click', function(e) {
+            if (e.target === uploadModal) {
+                uploadModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('lightbox')) {
+                closeLightbox();
+            }
+        });
+        
+        // Vista previa de la imagen seleccionada
+        photoUploadInput.addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    submitPhotoBtn.disabled = false;
+                    uploadStatus.style.display = 'none';
+                }
+                
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
+        // Guardar la nueva foto en GitHub
+        submitPhotoBtn.addEventListener('click', async function() {
+            if (!previewImage.src) return;
+            
+            // Mostrar estado de carga
+            uploadStatus.style.display = 'block';
+            uploadStatus.className = 'status-message status-loading';
+            uploadStatus.innerHTML = '<div class="loading-spinner"></div> <span>Subiendo foto a GitHub...</span>';
+            
+            try {
+                // Obtener fotos actuales
+                const photosResponse = await fetch(GITHUB_API_URL, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                let photos = initialPhotos;
+                let sha = null;
+                
+                if (photosResponse.ok) {
+                    const data = await photosResponse.json();
+                    const content = atob(data.content);
+                    photos = JSON.parse(content);
+                    sha = data.sha;
+                }
+                
+                // Agregar nueva foto
+                photos.unshift({
+                    src: previewImage.src,
+                    alt: 'Nuestro momento especial'
+                });
+                
+                // Actualizar archivo en GitHub
+                const updateResponse = await fetch(GITHUB_API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Agregar nueva foto de amor',
+                        content: btoa(JSON.stringify(photos)),
+                        sha: sha
+                    })
+                });
+                
+                if (!updateResponse.ok) {
+                    const errorData = await updateResponse.json();
+                    throw new Error(errorData.message || 'Error al actualizar en GitHub');
+                }
+                
+                // Actualizar galería
+                await loadGallery();
+                
+                // Mostrar mensaje de éxito
+                uploadStatus.className = 'status-message status-success';
+                uploadStatus.innerHTML = '<i class="fas fa-check-circle"></i> <span>¡Foto agregada con éxito a GitHub!</span>';
+                
+                // Cerrar modal después de 2 segundos
+                setTimeout(() => {
+                    uploadModal.style.display = 'none';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Error al subir foto:', error);
+                
+                // Mostrar mensaje de error
+                uploadStatus.className = 'status-message status-error';
+                uploadStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>Error: ${error.message}</span>`;
+            }
+        });
+        
+        // Cerrar lightbox
+        closeLightboxBtn.addEventListener('click', closeLightbox);
+    </script>
+</body>
+</html>
